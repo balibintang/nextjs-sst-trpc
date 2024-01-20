@@ -3,12 +3,10 @@
 ## Things this includes
 
 - NextJs app deployed with SST 2 via open-next
-- Scoping how React query works with nextjs
-- Scoping how Redux works with nextjs
-- How to accomplish server side and client side reusable components
-- Demo of potential fullstack monorepo (using TRPC as api)
-- Example of SST auth in action
-- Exploring tailwind CSS for styling
+- TRPC Setup with react query ( client side, server side, server hydrating )
+- Auth setup with SST auth and google provider
+- Daisy Ui for the UI library
+- ElectroDb for the wrapper to interface with dynamo
 
 ## Setup
 
