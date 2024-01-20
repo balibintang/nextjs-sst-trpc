@@ -4,7 +4,7 @@ import { SSTConfig } from "sst";
 export default {
   config(_input) {
     return {
-      name: "sst-test-2",
+      name: process.env.DEPLOYMENT_NAME || "sst-app",
       region: "ap-southeast-2",
     };
   },
