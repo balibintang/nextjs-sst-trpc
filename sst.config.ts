@@ -1,4 +1,3 @@
-import { Exam } from "@/stacks/exam";
 import { Persistence } from "@/stacks/persistence";
 import { SSTConfig } from "sst";
 
@@ -13,7 +12,6 @@ export default {
     if (app.stage !== "prod") {
       app.setDefaultRemovalPolicy("destroy");
     }
-    app.stack(Exam);
     app.stack(Persistence);
   },
 } satisfies SSTConfig;
