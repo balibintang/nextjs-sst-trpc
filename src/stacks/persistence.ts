@@ -1,4 +1,5 @@
 import {
+  Bucket,
   Config,
   NextjsSite,
   Script,
@@ -38,8 +39,10 @@ export function Persistence({ stack }: StackContext) {
     },
   });
 
+  const storageBucket = new Bucket(stack, "public", {});
+
   const site = new NextjsSite(stack, "site", {
-    bind: [onboardingTable, auth, GOOGLE_CLIENT_ID],
+    bind: [onboardingTable, auth, GOOGLE_CLIENT_ID, storageBucket],
   });
 
   stack.addOutputs({
