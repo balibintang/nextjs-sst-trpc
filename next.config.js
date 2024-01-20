@@ -1,4 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.node/,
+      use: "raw-loader",
+    });
 
-module.exports = nextConfig
+    return config;
+  },
+  compiler: {
+    // Enables the styled-components SWC transform
+    styledComponents: true,
+  },
+};
+
+module.exports = nextConfig;
