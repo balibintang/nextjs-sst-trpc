@@ -1,4 +1,4 @@
-# NextJS + SST + React Query Test
+# Next.js + SST + TRPC + ElectroDb
 
 ## Things this includes
 
