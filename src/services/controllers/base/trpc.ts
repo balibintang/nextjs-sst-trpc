@@ -6,6 +6,8 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
+import { sessions } from "@/services/utils/auth";
+import { parseCookies } from "@/services/utils/cookieHelpers";
 import { initTRPC } from "@trpc/server";
 import { ZodError } from "zod";
 
@@ -68,4 +70,32 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
+
+const privateMiddleware = t.middleware((opts) => {
+
+  const cookieString = opts.ctx.headers.get('cookie') || ''
+  const cookies = parseCookies(cookieString);
+  const sessionToken = cookies?.session
+  if(!sessionToken) {
+    throw new Error('No session cookie, please login')
+  }
+
+  const sessionDetails = sessions.verify(sessionToken)
+
+  if(sessionDetails.type !== 'user') {
+    throw new Error('Not a user session')
+  }
+
+  return opts.next({
+    ctx: {
+      ...opts.ctx,
+      ...sessionDetails,
+    },
+  });
+});
+
+// Use this for procedures that you want to be publicly accessible.
 export const publicProcedure = t.procedure;
+
+// Use this for procedures that you want to be behind authentication.
+export const privateProcedure = publicProcedure.use(privateMiddleware)
