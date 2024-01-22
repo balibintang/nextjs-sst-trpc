@@ -12,3 +12,4 @@ export const createHydratingApi = async () =>
     router: appRouter,
     ctx: await createTRPCContext({ headers: headers() }),
   });
+

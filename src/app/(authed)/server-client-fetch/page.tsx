@@ -3,12 +3,12 @@ import { createHydratingApi } from "@/app/utils/trpc/hydrate/serverPreFill";
 import { ExampleComponent } from "../client-fetch/Example";
 
 export default async function Server() {
-  const api = await createHydratingApi();
-  await api.user.userDetails.fetch();
-  const dehydratedState = api.dehydrate();
+  // const api = await createHydratingApi();
+  // await api.user.userDetails.fetch();
+  // const dehydratedState = api.dehydrate();
 
   return (
-    <HydrateApi state={dehydratedState}>
+    // <HydrateApi state={dehydratedState}>
       <div>
         <h1 className="mb-3 text-xl font-medium">
           Server Side Hydrated Client Page
@@ -24,6 +24,6 @@ export default async function Server() {
         </div>
         <ExampleComponent />
       </div>
-    </HydrateApi>
+    // </HydrateApi>
   );
 }

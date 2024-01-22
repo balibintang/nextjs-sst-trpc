@@ -1,9 +1,7 @@
-import { createHydratingApi } from "@/app/utils/trpc/hydrate/serverPreFill";
-import { ExampleComponent } from "../client-fetch/Example";
 import { api } from "@/app/utils/trpc/server";
 
 export default async function Server() {
-  const userData = await api.user.userDetails.query();
+  const userData = await api.user.userDetails()
 
   return (
     <div>
