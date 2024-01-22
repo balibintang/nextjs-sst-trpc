@@ -1,7 +1,7 @@
-"use client";
+'use client';
 // https://www.answeroverflow.com/m/1169761966248693810#solution-1169765457809645609
-import { Hydrate as RQHydrate, HydrateProps } from "@tanstack/react-query";
+import { HydrationBoundary as RQHydrate, HydrationBoundaryProps } from "@tanstack/react-query";
 
-export default function HydrateApi(props: HydrateProps) {
+export default function HydrateApi(props: HydrationBoundaryProps) {
   return <RQHydrate {...props} />;
 }

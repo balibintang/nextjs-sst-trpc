@@ -13,7 +13,7 @@ export const ExampleComponent = () => {
   const { data: userData, isLoading: isLoadingUserData } =
     api.user.userDetails.useQuery(undefined);
 
-  const { mutate: changeUserName, isLoading: isChangingName } =
+  const { mutate: changeUserName, isPending: isChangingName } =
     api.user.changeUserName.useMutation({
       onSuccess() {
         utils.user.userDetails.invalidate();
