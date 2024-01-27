@@ -134,7 +134,7 @@ devDependencies:
     specifier: ^4.0.2
     version: 4.0.2(webpack@5.89.0)
   sst:
-    specifier: ^2.24.25
+    specifier: 2.24.25
     version: 2.24.25(@types/react@18.2.20)(aws-crt@1.21.0)
 
 packages:
@@ -7018,7 +7018,7 @@ packages:
       duplexify: 4.1.2
       help-me: 3.0.0
       inherits: 2.0.4
-      minimist: 1.2.6
+      minimist: 1.2.8
       mqtt-packet: 6.10.0
       pump: 3.0.0
       readable-stream: 3.6.2
