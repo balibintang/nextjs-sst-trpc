@@ -48,3 +48,8 @@ These endpoints are hosted as part of the Next.js deployment and run on the BE p
 ### API Docs
 
 You can view your API docs on `localhost:3000/api/docs`
+
+
+### IMPROVEMENTS 
+
+- Bump versions of next, trpc, react query and SST 
