@@ -18,7 +18,7 @@ dependencies:
     specifier: ^3.496.0
     version: 3.496.0(@aws-sdk/client-dynamodb@3.496.0)
   '@tanstack/react-query':
-    specifier: ^5.17.19
+    specifier: 5.17.19
     version: 5.17.19(react@18.2.0)
   '@tanstack/react-query-devtools':
     specifier: ^5.17.21
@@ -27,17 +27,17 @@ dependencies:
     specifier: 5.0.0-alpha.80
     version: 5.0.0-alpha.80(@tanstack/react-query@5.17.19)(next@13.4.12)(react-dom@18.2.0)(react@18.2.0)
   '@trpc/client':
-    specifier: 11.0.0-alpha-tmp-react-sideeffects-import.202
-    version: 11.0.0-alpha-tmp-react-sideeffects-import.202
+    specifier: 11.0.0-next-beta.228
+    version: 11.0.0-next-beta.228(@trpc/server@11.0.0-next-beta.228)
   '@trpc/next':
-    specifier: 11.0.0-alpha-tmp-react-sideeffects-import.202
-    version: 11.0.0-alpha-tmp-react-sideeffects-import.202(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-alpha-tmp-react-sideeffects-import.202)(@trpc/react-query@11.0.0-alpha-tmp-react-sideeffects-import.202)(next@13.4.12)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 11.0.0-next-beta.228
+    version: 11.0.0-next-beta.228(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-next-beta.228)(@trpc/react-query@11.0.0-next-beta.228)(@trpc/server@11.0.0-next-beta.228)(next@13.4.12)(react-dom@18.2.0)(react@18.2.0)
   '@trpc/react-query':
-    specifier: 11.0.0-alpha-tmp-react-sideeffects-import.202
-    version: 11.0.0-alpha-tmp-react-sideeffects-import.202(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-alpha-tmp-react-sideeffects-import.202)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 11.0.0-next-beta.228
+    version: 11.0.0-next-beta.228(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-next-beta.228)(@trpc/server@11.0.0-next-beta.228)(react-dom@18.2.0)(react@18.2.0)
   '@trpc/server':
-    specifier: 11.0.0-alpha-tmp-react-sideeffects-import.202
-    version: 11.0.0-alpha-tmp-react-sideeffects-import.202
+    specifier: 11.0.0-next-beta.228
+    version: 11.0.0-next-beta.228
   '@types/node':
     specifier: 20.4.10
     version: 20.4.10
@@ -94,7 +94,7 @@ dependencies:
     version: 3.3.3
   trpc-panel:
     specifier: ^1.3.4
-    version: 1.3.4(@trpc/server@11.0.0-alpha-tmp-react-sideeffects-import.202)(zod@3.22.4)
+    version: 1.3.4(@trpc/server@11.0.0-next-beta.228)(zod@3.22.4)
   typescript:
     specifier: 5.1.6
     version: 5.1.6
@@ -3057,54 +3057,57 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@trpc/client@11.0.0-alpha-tmp-react-sideeffects-import.202:
-    resolution: {integrity: sha512-yMYmzuf0XqkmSUBYJOcfmS4DFVgh1IxRAzJmlTpWwmYg1FlFpg12XvbqE7ZEvwXIs3MADpfAd8umJsB7sZvfCw==}
+  /@trpc/client@11.0.0-next-beta.228(@trpc/server@11.0.0-next-beta.228):
+    resolution: {integrity: sha512-LM7vHbzJBzOs31nONUQV0Mdxsuz7YNt6KDe+5BnLDFS7qXcUcgVj6lpFgtglWEOEDBa02OHQYujyzrajvb3asA==}
+    peerDependencies:
+      '@trpc/server': 11.0.0-next-beta.228+38f3240e9
     dependencies:
-      '@trpc/core': 11.0.0-alpha-tmp-react-sideeffects-import.202
+      '@trpc/server': 11.0.0-next-beta.228
     dev: false
 
-  /@trpc/core@11.0.0-alpha-tmp-react-sideeffects-import.202:
-    resolution: {integrity: sha512-PvQn75EJuuWyRQnzrV7wOc8KpzprcaoJYPCqQQl/EcOi1s5mEZU+kRhGeI9qQhwju+csOdITto9TR5klhMl3SQ==}
-    dev: false
-
-  /@trpc/next@11.0.0-alpha-tmp-react-sideeffects-import.202(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-alpha-tmp-react-sideeffects-import.202)(@trpc/react-query@11.0.0-alpha-tmp-react-sideeffects-import.202)(next@13.4.12)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-8+vFjAzlgpH/EKUY37q6CLlChxJVvcZOAEpIog3AmD8imRIvSFOibDTN/rt3ERK4DEViqLUxe8duMQsuu7LkqA==}
+  /@trpc/next@11.0.0-next-beta.228(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-next-beta.228)(@trpc/react-query@11.0.0-next-beta.228)(@trpc/server@11.0.0-next-beta.228)(next@13.4.12)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-LAs46G8rdO0wqDLaodBFMtPqVz6sV1Yizvn8GgFSplSqeV5ofdGhvFU4p3ScoKRWgzQhzhrI3T7zVf10xZQCCA==}
     peerDependencies:
       '@tanstack/react-query': ^5.0.0
-      '@trpc/client': 11.0.0-alpha-tmp-react-sideeffects-import.202+204981c56
-      '@trpc/react-query': 11.0.0-alpha-tmp-react-sideeffects-import.202+204981c56
+      '@trpc/client': 11.0.0-next-beta.228+38f3240e9
+      '@trpc/react-query': 11.0.0-next-beta.228+38f3240e9
+      '@trpc/server': 11.0.0-next-beta.228+38f3240e9
       next: '*'
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
+    peerDependenciesMeta:
+      '@tanstack/react-query':
+        optional: true
+      '@trpc/react-query':
+        optional: true
     dependencies:
       '@tanstack/react-query': 5.17.19(react@18.2.0)
-      '@trpc/client': 11.0.0-alpha-tmp-react-sideeffects-import.202
-      '@trpc/core': 11.0.0-alpha-tmp-react-sideeffects-import.202
-      '@trpc/react-query': 11.0.0-alpha-tmp-react-sideeffects-import.202(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-alpha-tmp-react-sideeffects-import.202)(react-dom@18.2.0)(react@18.2.0)
+      '@trpc/client': 11.0.0-next-beta.228(@trpc/server@11.0.0-next-beta.228)
+      '@trpc/react-query': 11.0.0-next-beta.228(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-next-beta.228)(@trpc/server@11.0.0-next-beta.228)(react-dom@18.2.0)(react@18.2.0)
+      '@trpc/server': 11.0.0-next-beta.228
       next: 13.4.12(@babel/core@7.23.7)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@trpc/react-query@11.0.0-alpha-tmp-react-sideeffects-import.202(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-alpha-tmp-react-sideeffects-import.202)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-ILsYE01AJ5IXip6X8SYdOn5m7rmZIqzmG2P3HtFHomecflYqNKERVuJ6tUBJbDUYzPh72Bl8o+NXIKnWabTEOQ==}
+  /@trpc/react-query@11.0.0-next-beta.228(@tanstack/react-query@5.17.19)(@trpc/client@11.0.0-next-beta.228)(@trpc/server@11.0.0-next-beta.228)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-c50um14znXEU8WIx/oS6/GtO09OZj3F44KsliC55icS+ugU7z3VNXv79iYyVsulz/unkOvQLVeAkSBhSUfM+7g==}
     peerDependencies:
       '@tanstack/react-query': ^5.0.0
-      '@trpc/client': 11.0.0-alpha-tmp-react-sideeffects-import.202+204981c56
+      '@trpc/client': 11.0.0-next-beta.228+38f3240e9
+      '@trpc/server': 11.0.0-next-beta.228+38f3240e9
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
     dependencies:
       '@tanstack/react-query': 5.17.19(react@18.2.0)
-      '@trpc/client': 11.0.0-alpha-tmp-react-sideeffects-import.202
-      '@trpc/core': 11.0.0-alpha-tmp-react-sideeffects-import.202
+      '@trpc/client': 11.0.0-next-beta.228(@trpc/server@11.0.0-next-beta.228)
+      '@trpc/server': 11.0.0-next-beta.228
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@trpc/server@11.0.0-alpha-tmp-react-sideeffects-import.202:
-    resolution: {integrity: sha512-bZ+F8EtupXsYsitaD9wcUY6E+feVkZL120RvvYP572Cdpz8KQEIX5S+hAeXcLEwUvM+T0rU+s0hg8B+2+u7paw==}
-    dependencies:
-      '@trpc/core': 11.0.0-alpha-tmp-react-sideeffects-import.202
+  /@trpc/server@11.0.0-next-beta.228:
+    resolution: {integrity: sha512-8pRT1Ixrh8310KlPLLwlfEmfWXL9yrJK+mz9jFgvsiEtazR2N7rUFV8SoG2SWGxLkTaPc03o4k1JSf83XDwWRw==}
     dev: false
 
   /@trpc/server@9.16.0:
@@ -7791,13 +7794,13 @@ packages:
     hasBin: true
     dev: true
 
-  /trpc-panel@1.3.4(@trpc/server@11.0.0-alpha-tmp-react-sideeffects-import.202)(zod@3.22.4):
+  /trpc-panel@1.3.4(@trpc/server@11.0.0-next-beta.228)(zod@3.22.4):
     resolution: {integrity: sha512-u5/dCi/AAp2tpJcCL5ZCfrdJtHHu8hrtm2hzSBZCE7z9Tw6MB1rCcliSQvgMPIEXMQrgwXk4t4IedfWkxioKng==}
     peerDependencies:
       '@trpc/server': ^10.0.0
       zod: ^3.19.1
     dependencies:
-      '@trpc/server': 11.0.0-alpha-tmp-react-sideeffects-import.202
+      '@trpc/server': 11.0.0-next-beta.228
       fuzzysort: 2.0.4
       path: 0.12.7
       url: 0.11.3

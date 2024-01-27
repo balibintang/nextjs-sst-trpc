@@ -28,7 +28,7 @@ export default async function Server() {
   //       <ExampleComponent />
   //     </div>
   //   </HydrateApi>
-  // )
+  )
 
   return <div>This page is broken with: https://github.com/trpc/trpc/issues/5293</div>
 
