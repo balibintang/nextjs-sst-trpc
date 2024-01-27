@@ -16,8 +16,8 @@ export const sessions = createSessionBuilder<{
 export const handler = AuthHandler({
   sessions,
   clients: async () => ({
-    // This allows local clients to redirect back to localhost
-    local: "http://localhost",
+    local: "http://localhost", // This allows local clients to redirect back to localhost
+
   }),
   providers: {
     google: GoogleAdapter({
@@ -25,43 +25,37 @@ export const handler = AuthHandler({
       clientID: Config.GOOGLE_CLIENT_ID,
     }),
   },
-  async onAuthorize() {
-    // any code you want to run when auth begins
-  },
-  async onSuccess(input, response) {
-    let user;
+  callbacks: {
+    auth: {
+      async allowClient() {
+        return true;
+      },      
+      async success(input, response) {
+        let user;
 
-    if (input.provider === "google") {
-      const claims = input.tokenset.claims();
-      let user = await getUserDetails(claims.sub);
-      if (!user) {
-        user = await addUser({
-          userId: claims.sub,
-          email: claims.email,
-          picture: claims.picture,
-          name: claims.given_name,
-        });
-      }
-
-      return response.session({
-        type: "user",
-        properties: {
-          userId: user.userId,
-        },
-      });
-    }
-
-    throw new Error("Unknown provider");
-  },
-
-  // This callback needs some work, not spec compliant currently
-  async onError() {
-    return {
-      statusCode: 400,
-      headers: {
-        "Content-Type": "text/plain",
+        if (input.provider === "google") {
+          const claims = input.tokenset.claims();
+          let user = await getUserDetails(claims.sub);
+          if (!user) {
+            user = await addUser({
+              userId: claims.sub,
+              email: claims.email,
+              picture: claims.picture,
+              name: claims.given_name,
+            });
+          }
+    
+          return response.session({
+            type: "user",
+            properties: {
+              userId: user.userId,
+            },
+          });
+        }
+    
+        throw new Error("Unknown provider");
       },
-      body: "Auth failed",
-    };
-  },
-});
+    }
+    }
+  })
+

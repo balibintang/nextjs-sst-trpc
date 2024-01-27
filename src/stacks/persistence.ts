@@ -6,7 +6,8 @@ import {
   StackContext,
   Table,
 } from "sst/constructs";
-import { Auth } from "sst/constructs/future/Auth.js";
+import { Auth } from "sst/constructs/future"
+
 
 export function Persistence({ stack }: StackContext) {
   const googleClientId = process.env.GOOGLE_CLIENT_ID;
@@ -42,11 +43,11 @@ export function Persistence({ stack }: StackContext) {
   const storageBucket = new Bucket(stack, "public", {});
 
   const site = new NextjsSite(stack, "site", {
-    bind: [onboardingTable, auth, GOOGLE_CLIENT_ID, storageBucket],
+    bind: [auth, GOOGLE_CLIENT_ID, storageBucket,onboardingTable ],
   });
 
   stack.addOutputs({
     SiteUrl: site.url,
-    AuthCallbackUrl: `${auth.url}/callback`,
+    AuthCallbackUrl: `${auth.url}`,
   });
 }

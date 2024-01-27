@@ -22,6 +22,6 @@ export default async function Server() {
       <div>User Name: {userData?.name}</div>
       <div>User Email: {userData?.email}</div>
       <div>User Id: {userData?.userId}</div>
-    </div>
+     </div>
   );
 }

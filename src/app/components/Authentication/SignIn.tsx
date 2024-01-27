@@ -5,6 +5,7 @@ export const SignInButton = ({ authUrl }: { authUrl: string }) => {
   const referer = headersList.get("referer") || "";
   const originUrl = new URL(referer).origin;
 
+
   const getRedirectLocation = () => {
     const params = new URLSearchParams({
       client_id: "local",
