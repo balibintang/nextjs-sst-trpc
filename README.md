@@ -27,7 +27,7 @@ Follow the guide provided at this [link](`https://sst.dev/examples/how-to-add-go
 
 - Skip all the actual SST setup stuff, just do the google side things
 - When you get up to the client id step, copy it and replace `GOOGLE_CLIENT_ID` in `.env`
-- When you get up to the update google redirect URI step add the url copied in the previous step
+- When you get up to the update google redirect URI step add the url copied in the previous step plus /callback. `AuthCallbackUrl/callback`
 
 ### 4. Run your NextJs project
 
@@ -37,7 +37,7 @@ Follow the guide provided at this [link](`https://sst.dev/examples/how-to-add-go
 
 This app can be deployed to production using the following command:
 
-    pnpm sst deploy --stage STAGE_NAME --profile=PROFILE_NAME
+    pnpm run deploy:prod
 
 ## API and Docs
 

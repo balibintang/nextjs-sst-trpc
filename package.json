@@ -1,12 +1,13 @@
 {
-  "name": "sst-test-2",
+  "name": "next-starter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "sst bind next dev",
     "build": "sst bind next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:prod": "sst build && sst deploy --stage prod --from .sst/dist"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.391.0",
