@@ -8,6 +8,14 @@ const nextConfig = {
 
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/trpc/:path*",
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/api/trpc/:path*`,
+      },
+    ];
+  },
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true,

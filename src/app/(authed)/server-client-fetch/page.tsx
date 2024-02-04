@@ -1,11 +1,11 @@
 import HydrateApi from "@/app/utils/trpc/hydrate/hydrateApi";
-import { createHydratingApi } from "@/app/utils/trpc/hydrate/serverPreFill";
+import { createApiCaller } from "@/app/utils/trpc/server";
 import { ExampleComponent } from "../client-fetch/Example";
 
 export default async function Server() {
-  const api = await createHydratingApi();
-  await api.user.userDetails.fetch();
-  const dehydratedState = api.dehydrate();
+  const api = await createApiCaller();
+  const a = await api.user.userDetails.fetch();
+  const dehydratedState = await api.dehydrate();
 
   return (
     <HydrateApi state={dehydratedState}>

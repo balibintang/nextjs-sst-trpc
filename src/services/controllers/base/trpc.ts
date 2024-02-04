@@ -7,8 +7,9 @@
  * need to use are documented accordingly near the end.
  */
 import { sessions } from "@/services/utils/auth";
-import { parseCookies } from "@/services/utils/cookieHelpers";
-import { initTRPC } from "@trpc/server";
+import { TRPCError, initTRPC } from "@trpc/server";
+import { CreateAWSLambdaContextOptions } from "@trpc/server/adapters/aws-lambda";
+import { APIGatewayProxyEventV2 } from "aws-lambda";
 import { ZodError } from "zod";
 
 /**
@@ -23,11 +24,11 @@ import { ZodError } from "zod";
  *
  * @see https://trpc.io/docs/server/context
  */
-export const createTRPCContext = async (opts: { headers: Headers }) => {
-  return {
-    ...opts,
-  };
-};
+export const createContext = ({
+  event,
+}: CreateAWSLambdaContextOptions<APIGatewayProxyEventV2>) => ({
+  ...event,
+});
 
 /**
  * 2. INITIALIZATION
@@ -36,7 +37,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
  * ZodErrors so that you get typesafety on the frontend if your procedure fails due to validation
  * errors on the backend.
  */
-const t = initTRPC.context<typeof createTRPCContext>().create({
+const t = initTRPC.context<typeof createContext>().create({
   errorFormatter({ shape, error }) {
     return {
       ...shape,
@@ -70,27 +71,30 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-
 const privateMiddleware = t.middleware((opts) => {
-
-  const cookieString = opts.ctx.headers.get('cookie') || ''
-  const cookies = parseCookies(cookieString);
-  const sessionToken = cookies?.session
-  if(!sessionToken) {
-    throw new Error('No session cookie, please login')
+  let session = null;
+  if (opts.ctx.headers.authorization) {
+    session = sessions.use();
+  } else {
+    const tokenCookieString = opts.ctx.cookies?.find(
+      (str) => str.split("=")[0] === "session",
+    );
+    if (tokenCookieString === undefined) {
+      throw new TRPCError({
+        code: "FORBIDDEN",
+        message: "No session token found",
+      });
+    }
+    const token = tokenCookieString.split("=")[1];
+    session = sessions.verify(token);
   }
 
-  const sessionDetails = sessions.verify(sessionToken)
-
-  if(sessionDetails.type !== 'user') {
-    throw new Error('Not a user session')
+  if (session.type !== "user") {
+    throw new TRPCError({ code: "UNAUTHORIZED", message: "Non-user access" });
   }
 
   return opts.next({
-    ctx: {
-      ...opts.ctx,
-      ...sessionDetails,
-    },
+    ctx: { ...opts.ctx, ...session },
   });
 });
 
@@ -98,5 +102,4 @@ const privateMiddleware = t.middleware((opts) => {
 export const publicProcedure = t.procedure;
 
 // Use this for procedures that you want to be behind authentication.
-export const privateProcedure = publicProcedure.use(privateMiddleware)
-
+export const privateProcedure = publicProcedure.use(privateMiddleware);
