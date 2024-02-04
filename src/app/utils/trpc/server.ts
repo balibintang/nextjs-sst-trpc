@@ -1,11 +1,7 @@
-import { AppRouter } from "@/services/controllers/base/router";
-import {
-  HTTPHeaders,
-  createTRPCProxyClient,
-  httpBatchLink,
-} from "@trpc/client";
+import { type AppRouter } from "@/services/controllers/base/router";
+import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
 import { createServerSideHelpers } from "@trpc/react-query/server";
-import { cookies, headers } from "next/headers";
+import { cookies } from "next/headers";
 
 export const createApiCaller = () => {
   const proxyClient = createTRPCProxyClient<AppRouter>({
