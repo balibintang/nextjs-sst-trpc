@@ -3,27 +3,28 @@ import { createHydratingApi } from "@/app/utils/trpc/hydrate/serverPreFill";
 import { ExampleComponent } from "../client-fetch/Example";
 
 export default async function Server() {
-  const api = await createHydratingApi();
-  await api.user.userDetails.fetch();
-  const dehydratedState = api.dehydrate();
+  return <div>This example is broken, fix later</div>;
+  // const api = await createHydratingApi();
+  // await api.user.userDetails.fetch();
+  // const dehydratedState = api.dehydrate();
 
-  return (
-    <HydrateApi state={dehydratedState}>
-      <div>
-        <h1 className="mb-3 text-xl font-medium">
-          Server Side Hydrated Client Page
-        </h1>
-        <div className="mb-3">
-          This is an example of a page that fetches the component on the server
-          side and then hydrates the component so it has access to all of the
-          query data. It is using the same component as the client side example
-          but the data is fetched on the server side.
-          <br />
-          You can see that the data is server side fetched by looking at the
-          network tab in your browser.
-        </div>
-        <ExampleComponent />
-      </div>
-    </HydrateApi>
-  );
+  // return (
+  //   <HydrateApi state={dehydratedState}>
+  //     <div>
+  //       <h1 className="mb-3 text-xl font-medium">
+  //         Server Side Hydrated Client Page
+  //       </h1>
+  //       <div className="mb-3">
+  //         This is an example of a page that fetches the component on the server
+  //         side and then hydrates the component so it has access to all of the
+  //         query data. It is using the same component as the client side example
+  //         but the data is fetched on the server side.
+  //         <br />
+  //         You can see that the data is server side fetched by looking at the
+  //         network tab in your browser.
+  //       </div>
+  //       <ExampleComponent />
+  //     </div>
+  //   </HydrateApi>
+  // );
 }

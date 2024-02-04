@@ -1,4 +1,5 @@
 import {
+  Api,
   Bucket,
   Config,
   NextjsSite,
@@ -6,8 +7,7 @@ import {
   StackContext,
   Table,
 } from "sst/constructs";
-import { Auth } from "sst/constructs/future"
-
+import { Auth } from "sst/constructs/future";
 
 export function Persistence({ stack }: StackContext) {
   const googleClientId = process.env.GOOGLE_CLIENT_ID;
@@ -42,15 +42,38 @@ export function Persistence({ stack }: StackContext) {
 
   const storageBucket = new Bucket(stack, "public", {});
 
+  const api = new Api(stack, "api", {
+    routes: {
+      "GET /api/trpc/{proxy+}": {
+        function: {
+          handler: "src/services/controllers/base/router.handler",
+        },
+      },
+      "POST /api/trpc/{proxy+}": {
+        function: {
+          handler: "src/services/controllers/base/router.handler",
+        },
+      },
+    },
+    defaults: {
+      function: {
+        bind: [onboardingTable, auth, GOOGLE_CLIENT_ID, storageBucket],
+      },
+    },
+  });
+
   const site = new NextjsSite(stack, "site", {
-    bind: [auth, storageBucket,onboardingTable,GOOGLE_CLIENT_ID ],
+    bind: [],
     environment: {
-      NEXT_PUBLIC_GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID.value,
+      NEXT_PUBLIC_API_URL: api.url,
+      NEXT_PUBLIC_AUTH_CALLBACK_URL: auth.url,
     },
   });
 
   stack.addOutputs({
     SiteUrl: site.url,
     AuthCallbackUrl: `${auth.url}`,
+    NEXT_PUBLIC_API_URL: api.url,
+    NEXT_PUBLIC_AUTH_CALLBACK_URL: auth.url,
   });
 }
