@@ -1,4 +1,4 @@
-// import { type AppRouter } from "@/services/controllers/base/router";
+import { type AppRouter } from "@/services/controllers/base/router";
 import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
 import { createServerSideHelpers } from "@trpc/react-query/server";
 import { cookies } from "next/headers";
