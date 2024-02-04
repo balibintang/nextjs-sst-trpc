@@ -43,7 +43,10 @@ export function Persistence({ stack }: StackContext) {
   const storageBucket = new Bucket(stack, "public", {});
 
   const site = new NextjsSite(stack, "site", {
-    bind: [auth, GOOGLE_CLIENT_ID, storageBucket,onboardingTable ],
+    bind: [auth, storageBucket,onboardingTable,GOOGLE_CLIENT_ID ],
+    environment: {
+      NEXT_PUBLIC_GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID.value,
+    },
   });
 
   stack.addOutputs({

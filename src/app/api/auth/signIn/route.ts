@@ -1,12 +1,12 @@
 // https://github.com/iway1/trpc-panel
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 function parseJwt (token: string) {
   return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const parsedUrl = new URL(request.url);
   const code = parsedUrl.searchParams.get("code");
   
@@ -17,9 +17,9 @@ export async function GET(request: Request) {
 
   if(!token) throw Error("No token found");
 
-  const destinationUrl = new URL("/", new URL(request.url).origin);
+  const originalUrl = request.nextUrl.protocol + request.headers.get('host') 
 
-  const response = NextResponse.redirect(destinationUrl, { status: 302 });
+  const response = NextResponse.redirect(originalUrl, { status: 302 });
   response.cookies.set("session", token, {
     path: "/",
     httpOnly: true,

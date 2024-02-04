@@ -1,9 +1,9 @@
 // https://github.com/iway1/trpc-panel
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request) {
-  const destinationUrl = new URL("/", new URL(request.url).origin);
+export async function GET(request: NextRequest) {
+  const destinationUrl = request.nextUrl.protocol + request.headers.get('host') 
 
   const response = NextResponse.redirect(destinationUrl, { status: 302 });
   response.cookies.set("session", "", {

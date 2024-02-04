@@ -7,7 +7,6 @@ import { createTRPCReact } from "@trpc/react-query";
 import { useState } from "react";
 
 import { type AppRouter } from "@/services/controllers/base/router";
-import { getUrl } from "./shared";
 
 export const api = createTRPCReact<AppRouter>();
 
@@ -30,7 +29,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
             (op.direction === "down" && op.result instanceof Error),
         }),
         unstable_httpBatchStreamLink({
-          url: getUrl(),
+          url: typeof window !== 'undefined' ? window.location.origin + "/api/trpc" : ''  
         }),
       ],
     }),

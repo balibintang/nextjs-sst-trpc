@@ -7,7 +7,7 @@ export const SignInButton = ({ authUrl }: { authUrl: string }) => {
   const [redirectUrl, setRedirectUrl] = useState<string>("");
   const getRedirectLocation = () => {
     const params = new URLSearchParams({
-      client_id: "local",
+      client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || 'local',
       redirect_uri: `${window.location.origin}/api/auth/signIn`,
       response_type: "code",
       provider: "google",
