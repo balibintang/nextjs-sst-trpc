@@ -1,6 +1,6 @@
 "use client";
 
-import { type AppRouter } from "@/services/controllers/base/router";
+// import { type AppRouter } from "@/services/controllers/base/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { httpBatchLink, loggerLink } from "@trpc/client";
