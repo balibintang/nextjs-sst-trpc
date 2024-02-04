@@ -10,7 +10,7 @@ export default async function Home() {
   const command = new PutObjectCommand({
     ACL: "public-read-write",
     Key: crypto.randomUUID(),
-    Bucket: Bucket.public.bucketName,
+    Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
   });
 
   const preSignUploadUrl = await getSignedUrl(new S3Client({}), command);

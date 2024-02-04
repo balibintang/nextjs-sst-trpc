@@ -67,6 +67,7 @@ export function Persistence({ stack }: StackContext) {
     environment: {
       NEXT_PUBLIC_API_URL: api.url,
       NEXT_PUBLIC_AUTH_URL: auth.url,
+      NEXT_PUBLIC_BUCKET_NAME: storageBucket.bucketName,
     },
   });
 
