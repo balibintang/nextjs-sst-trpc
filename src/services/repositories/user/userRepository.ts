@@ -50,7 +50,7 @@ const UserEntity = new Entity(
     },
   },
   {
-    table: process.env.VERCEL === "1" ? Table.onboarding.tableName : "",
+    table: process.env.VERCEL === "0" ? Table.onboarding.tableName : "",
     client: new DynamoDBClient({}),
   },
 );
