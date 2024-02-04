@@ -66,7 +66,7 @@ export function Persistence({ stack }: StackContext) {
     bind: [],
     environment: {
       NEXT_PUBLIC_API_URL: api.url,
-      NEXT_PUBLIC_AUTH_CALLBACK_URL: auth.url,
+      NEXT_PUBLIC_AUTH_URL: auth.url,
     },
   });
 
@@ -74,6 +74,6 @@ export function Persistence({ stack }: StackContext) {
     SiteUrl: site.url,
     AuthCallbackUrl: `${auth.url}`,
     NEXT_PUBLIC_API_URL: api.url,
-    NEXT_PUBLIC_AUTH_CALLBACK_URL: auth.url,
+    NEXT_PUBLIC_AUTH_URL: auth.url,
   });
 }

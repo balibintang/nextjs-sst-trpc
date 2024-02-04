@@ -72,13 +72,6 @@ function NavBarLinks() {
       </Link>
 
       <Link
-        href="/server-fetch"
-        className="btn btn-ghost btn-sm font-normal capitalize"
-      >
-        Server Fetch
-      </Link>
-
-      <Link
         href="/fileupload"
         className="btn btn-ghost btn-sm font-normal capitalize"
       >

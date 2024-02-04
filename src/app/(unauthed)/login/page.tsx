@@ -6,9 +6,7 @@ export default function Login() {
     <main>
       <div>
         You have are not currently signed in, please sign in
-        <SignInButton
-          authUrl={process.env.NEXT_PUBLIC_AUTH_CALLBACK_URL ?? ""}
-        />
+        <SignInButton authUrl={process.env.NEXT_PUBLIC_AUTH_URL ?? ""} />
       </div>
     </main>
   );

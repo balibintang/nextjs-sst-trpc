@@ -1,9 +1,27 @@
+import { AppRouter } from "@/services/controllers/base/router";
+import {
+  HTTPHeaders,
+  createTRPCProxyClient,
+  httpBatchLink,
+} from "@trpc/client";
+import { createServerSideHelpers } from "@trpc/react-query/server";
+import { cookies, headers } from "next/headers";
 
-import "server-only";
-import { appRouter } from "@/services/controllers/base/router";
-import { headers } from "next/headers";
+export const createApiCaller = () => {
+  const proxyClient = createTRPCProxyClient<AppRouter>({
+    links: [
+      httpBatchLink({
+        url: `${process.env.NEXT_PUBLIC_API_URL}/api/trpc`,
+        headers: {
+          Authorization: `Bearer ${cookies().get("session")?.value}`,
+        },
+      }),
+    ],
+  });
 
+  const api = createServerSideHelpers({
+    client: proxyClient,
+  });
 
-export const createServerApi = async () => {
-  return  appRouter.createCaller({headers: headers()})
-}
+  return api;
+};

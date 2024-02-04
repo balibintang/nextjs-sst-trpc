@@ -72,17 +72,23 @@ export const createTRPCRouter = t.router;
  * are logged in.
  */
 const privateMiddleware = t.middleware((opts) => {
-  const tokenCookieString = opts.ctx.cookies?.find(
-    (str) => str.split("=")[0] === "session",
-  );
-  if (tokenCookieString === undefined) {
-    throw new TRPCError({
-      code: "FORBIDDEN",
-      message: "No session token found",
-    });
+  let session = null;
+  if (opts.ctx.headers.authorization) {
+    session = sessions.use();
+  } else {
+    const tokenCookieString = opts.ctx.cookies?.find(
+      (str) => str.split("=")[0] === "session",
+    );
+    if (tokenCookieString === undefined) {
+      throw new TRPCError({
+        code: "FORBIDDEN",
+        message: "No session token found",
+      });
+    }
+    const token = tokenCookieString.split("=")[1];
+    session = sessions.verify(token);
   }
-  const token = tokenCookieString.split("=")[1];
-  const session = sessions.verify(token);
+
   if (session.type !== "user") {
     throw new TRPCError({ code: "UNAUTHORIZED", message: "Non-user access" });
   }
