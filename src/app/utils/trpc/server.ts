@@ -1,10 +1,9 @@
-import { type AppRouter } from "@/services/controllers/base/router";
 import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
 import { createServerSideHelpers } from "@trpc/react-query/server";
 import { cookies } from "next/headers";
 
 export const createApiCaller = () => {
-  const proxyClient = createTRPCProxyClient<AppRouter>({
+  const proxyClient = createTRPCProxyClient<{}>({
     links: [
       httpBatchLink({
         url: `${process.env.NEXT_PUBLIC_API_URL}/api/trpc`,

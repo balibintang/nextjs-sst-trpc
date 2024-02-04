@@ -21,7 +21,7 @@ export const handler = AuthHandler({
   providers: {
     google: GoogleAdapter({
       mode: "oidc",
-      clientID: process.env.VERCEL === "0" ? Config.GOOGLE_CLIENT_ID : "",
+      clientID: Config.GOOGLE_CLIENT_ID,
     }),
   },
   callbacks: {
