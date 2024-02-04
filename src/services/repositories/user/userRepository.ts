@@ -49,7 +49,7 @@ const UserEntity = new Entity(
       },
     },
   },
-  { table: Table.onboarding.tableName, client: new DynamoDBClient({}) },
+  { table: "Table.onboarding.tableName", client: new DynamoDBClient({}) },
 );
 
 export type UserRecord = EntityItem<typeof UserEntity>;
