@@ -17,19 +17,18 @@ export const handler = AuthHandler({
   sessions,
   clients: async () => ({
     local: "http://localhost", // This allows local clients to redirect back to localhost
-
   }),
   providers: {
     google: GoogleAdapter({
       mode: "oidc",
-      clientID: Config.GOOGLE_CLIENT_ID,
+      clientID: "Config.GOOGLE_CLIENT_ID",
     }),
   },
   callbacks: {
     auth: {
       async allowClient() {
         return true;
-      },      
+      },
       async success(input, response) {
         let user;
 
@@ -44,7 +43,7 @@ export const handler = AuthHandler({
               name: claims.given_name,
             });
           }
-    
+
           return response.session({
             type: "user",
             properties: {
@@ -52,10 +51,9 @@ export const handler = AuthHandler({
             },
           });
         }
-    
+
         throw new Error("Unknown provider");
       },
-    }
-    }
-  })
-
+    },
+  },
+});
