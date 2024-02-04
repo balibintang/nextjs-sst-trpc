@@ -1,7 +1,6 @@
 import HydrateApi from "@/app/utils/trpc/hydrate/hydrateApi";
-import { ExampleComponent } from "../client-fetch/Example";
 import { createApiCaller } from "@/app/utils/trpc/server";
-import { headers } from "next/headers";
+import { ExampleComponent } from "../client-fetch/Example";
 
 export default async function Server() {
   const api = await createApiCaller();
