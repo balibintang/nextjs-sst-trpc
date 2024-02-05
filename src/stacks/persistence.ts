@@ -62,17 +62,17 @@ export function Persistence({ stack }: StackContext) {
     },
   });
 
-  const site = new NextjsSite(stack, "site", {
-    bind: [],
-    environment: {
-      NEXT_PUBLIC_API_URL: api.url,
-      NEXT_PUBLIC_AUTH_URL: auth.url,
-      NEXT_PUBLIC_BUCKET_NAME: storageBucket.bucketName,
-    },
-  });
+  // const site = new NextjsSite(stack, "site", {
+  //   bind: [],
+  //   environment: {
+  //     NEXT_PUBLIC_API_URL: api.url,
+  //     NEXT_PUBLIC_AUTH_URL: auth.url,
+  //     NEXT_PUBLIC_BUCKET_NAME: storageBucket.bucketName,
+  //   },
+  // });
 
   stack.addOutputs({
-    SiteUrl: site.url,
+    // SiteUrl: site.url,
     AuthCallbackUrl: `${auth.url}`,
     NEXT_PUBLIC_API_URL: api.url,
     NEXT_PUBLIC_AUTH_URL: auth.url,
