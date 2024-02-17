@@ -97,6 +97,7 @@ function parseJwt (token: string) {
 export default function App() { 
   const [result, setResult] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
+  const [response, setResponse] = useState(null);
 
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
@@ -127,8 +128,10 @@ export default function App() {
       const token = await getValueFor("access_token");
       setAccessToken(token);
 
+      console.log(token)
+
       if (token) {
-        const result = await fetch('https://qlvlcrpvck.execute-api.ap-southeast-2.amazonaws.com/api/trpc/user.userDetails', {
+        const result = await fetch('https://4nebspctu9.execute-api.ap-southeast-2.amazonaws.com/api/trpc/user.userDetails', {
           method: 'GET',
           headers: {
             Accept: 'application/json',
@@ -138,9 +141,11 @@ export default function App() {
         })
         .then(response => response.json())
         .then(json => {
+          setResponse(json)
           console.log(json)
         })
         .catch(error => {
+          console.log('aaa')
           console.error(error);
         });
       }
@@ -181,6 +186,7 @@ export default function App() {
       <Button title="Open WebBrowser" onPress={_handlePressButtonAsync} />
       <Text>{result && JSON.stringify(result)}</Text>
       <Text>{accessToken}</Text>
+      <Text>{JSON.stringify(response, null, 2)}</Text>
       <StatusBar style="auto" />
       <Button
         title="Press to Send Notification"
