@@ -50,7 +50,7 @@ const UserEntity = new Entity(
     },
   },
   {
-    table: Table.onboarding.tableName,
+    table: Table["table-onboarding"].tableName,
     client: new DynamoDBClient({}),
   },
 );

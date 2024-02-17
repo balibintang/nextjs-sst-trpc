@@ -1,19 +1,11 @@
 export const dynamic = "force-dynamic";
 
 import FileUpload from "@/app/components/FileUpload/FileUpload";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import crypto from "crypto";
-import { Bucket } from "sst/node/bucket";
+import { createApiCaller } from "@/app/utils/trpc/server";
 
 export default async function Home() {
-  const command = new PutObjectCommand({
-    ACL: "public-read-write",
-    Key: crypto.randomUUID(),
-    Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
-  });
-
-  const preSignUploadUrl = await getSignedUrl(new S3Client({}), command);
+  const api = createApiCaller();
+  const preSignUploadUrl = await api.user.getS3UploadUrl.fetch();
 
   return (
     <main>

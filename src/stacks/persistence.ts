@@ -2,7 +2,6 @@ import {
   Api,
   Bucket,
   Config,
-  NextjsSite,
   Script,
   StackContext,
   Table,
@@ -18,7 +17,7 @@ export function Persistence({ stack }: StackContext) {
     value: googleClientId,
   });
 
-  const onboardingTable = new Table(stack, "onboarding", {
+  const onboardingTable = new Table(stack, "table-onboarding", {
     fields: {
       pk: "string",
       sk: "string",
@@ -34,13 +33,13 @@ export function Persistence({ stack }: StackContext) {
   });
 
   // Script to init things in your deployment
-  const tableScript = new Script(stack, "initScript", {
+  const tableScript = new Script(stack, "script-init", {
     onCreate: {
       handler: "src/services/jobs/init/startupJob.handler",
     },
   });
 
-  const storageBucket = new Bucket(stack, "public", {});
+  const storageBucket = new Bucket(stack, "bucket-general", {});
 
   const api = new Api(stack, "api", {
     routes: {
@@ -62,20 +61,8 @@ export function Persistence({ stack }: StackContext) {
     },
   });
 
-  // const site = new NextjsSite(stack, "site", {
-  //   bind: [],
-  //   environment: {
-  //     NEXT_PUBLIC_API_URL: api.url,
-  //     NEXT_PUBLIC_AUTH_URL: auth.url,
-  //     NEXT_PUBLIC_BUCKET_NAME: storageBucket.bucketName,
-  //   },
-  // });
-
   stack.addOutputs({
-    // SiteUrl: site.url,
-    AuthCallbackUrl: `${auth.url}`,
     NEXT_PUBLIC_API_URL: api.url,
     NEXT_PUBLIC_AUTH_URL: auth.url,
-    NEXT_PUBLIC_BUCKET_NAME: storageBucket.bucketName,
   });
 }
